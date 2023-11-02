@@ -31,5 +31,9 @@ public class EstabelecimentoService {
 	public Estabelecimento insert(Estabelecimento obj) {
 		return repository.save(obj);
 	}
+	
+	public void delete(Long id) {
+		repository.deleteById(id);
+	}
 
 }
