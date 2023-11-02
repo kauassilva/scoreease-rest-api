@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.scoreease.api.entities.Establishment;
 import com.scoreease.api.repositories.EstablishmentRepository;
+import com.scoreease.api.services.exceptions.DatabaseException;
 import com.scoreease.api.services.exceptions.ResourceNotFoundException;
 
 @Service
@@ -34,7 +36,14 @@ public class EstablishmentService {
 	}
 	
 	public void delete(Long id) {
-		repository.deleteById(id);
+		if (!repository.existsById(id)) {
+			throw new ResourceNotFoundException(id);
+		}
+		try {			
+			repository.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DatabaseException(e.getMessage());
+		}
 	}
 	
 	public Establishment update(Long id, Establishment obj) {
