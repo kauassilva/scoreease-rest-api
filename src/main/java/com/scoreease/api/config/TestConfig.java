@@ -6,23 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
-import com.scoreease.api.entities.Estabelecimento;
-import com.scoreease.api.repositories.EstabelecimentoRepository;
+import com.scoreease.api.entities.Establishment;
+import com.scoreease.api.repositories.EstablishmentRepository;
 
 @Configuration
 public class TestConfig implements CommandLineRunner {
 
 	@Autowired
-	private EstabelecimentoRepository estabelecimentoRepository;
+	private EstablishmentRepository estabelecimentoRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
 		
 		estabelecimentoRepository.deleteAll();
 		
-		Estabelecimento e1 = new Estabelecimento(null, "Samsung");
-		Estabelecimento e2 = new Estabelecimento(null, "Vale");
-		Estabelecimento e3 = new Estabelecimento(null, "Burger King");
+		Establishment e1 = new Establishment(null, "Samsung");
+		Establishment e2 = new Establishment(null, "Vale");
+		Establishment e3 = new Establishment(null, "Burger King");
 		
 		estabelecimentoRepository.saveAll(Arrays.asList(e1, e2, e3));
 		

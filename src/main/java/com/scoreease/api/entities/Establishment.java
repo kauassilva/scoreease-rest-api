@@ -10,8 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_estabelecimento")
-public class Estabelecimento implements Serializable {
+@Table(name = "tb_establishment")
+public class Establishment implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -19,10 +19,10 @@ public class Estabelecimento implements Serializable {
 	private Long id;
 	private String name;
 	
-	public Estabelecimento() {
+	public Establishment() {
 	}
 
-	public Estabelecimento(Long id, String name) {
+	public Establishment(Long id, String name) {
 		this.id = id;
 		this.name = name;
 	}
@@ -56,7 +56,7 @@ public class Estabelecimento implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Estabelecimento other = (Estabelecimento) obj;
+		Establishment other = (Establishment) obj;
 		return Objects.equals(id, other.id);
 	}
 
