@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.scoreease.api.entities.Establishment;
 import com.scoreease.api.repositories.EstablishmentRepository;
+import com.scoreease.api.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class EstablishmentService {
@@ -21,7 +22,7 @@ public class EstablishmentService {
 	
 	public Establishment findById(Long id) {
 		Optional<Establishment> obj = repository.findById(id);
-		return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	public List<Establishment> findByTitle(String text) {
