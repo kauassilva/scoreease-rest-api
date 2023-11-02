@@ -12,6 +12,8 @@ import com.scoreease.api.repositories.EstablishmentRepository;
 import com.scoreease.api.services.exceptions.DatabaseException;
 import com.scoreease.api.services.exceptions.ResourceNotFoundException;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class EstablishmentService {
 	
@@ -47,9 +49,13 @@ public class EstablishmentService {
 	}
 	
 	public Establishment update(Long id, Establishment obj) {
-		Establishment entity = repository.getReferenceById(id);
-		updateData(entity, obj);
-		return repository.save(entity);
+		try {
+			Establishment entity = repository.getReferenceById(id);
+			updateData(entity, obj);
+			return repository.save(entity);			
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
 	}
 
 	private void updateData(Establishment entity, Establishment obj) {
