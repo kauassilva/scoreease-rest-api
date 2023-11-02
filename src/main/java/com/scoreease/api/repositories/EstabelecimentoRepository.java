@@ -1,5 +1,7 @@
 package com.scoreease.api.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -7,4 +9,7 @@ import com.scoreease.api.entities.Estabelecimento;
 
 @Repository
 public interface EstabelecimentoRepository extends JpaRepository<Estabelecimento, Long> {
+
+	List<Estabelecimento> findByNameContainingIgnoreCase(String text);
+	
 }

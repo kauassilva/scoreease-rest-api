@@ -18,6 +18,8 @@ public class TestConfig implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
+		estabelecimentoRepository.deleteAll();
+		
 		Estabelecimento e1 = new Estabelecimento(null, "Samsung");
 		Estabelecimento e2 = new Estabelecimento(null, "Vale");
 		Estabelecimento e3 = new Estabelecimento(null, "Burger King");

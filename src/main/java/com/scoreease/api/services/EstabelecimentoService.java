@@ -23,5 +23,13 @@ public class EstabelecimentoService {
 		Optional<Estabelecimento> obj = repository.findById(id);
 		return obj.get();
 	}
+	
+	public List<Estabelecimento> findByTitle(String text) {
+		return repository.findByNameContainingIgnoreCase(text);
+	}
+	
+	public Estabelecimento insert(Estabelecimento obj) {
+		return repository.save(obj);
+	}
 
 }
